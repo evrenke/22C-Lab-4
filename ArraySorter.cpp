@@ -1,31 +1,18 @@
 /*
-	Authors: Evren Keskin, Jason Hagene
-
-	Date: 11/09/2018
-
-	Description: This program will allow the user to create an array of data and display its sorting
-	The user is prompted to choose between int,double,char, and string arrays to create
-	Then they enter data into the array manually
-	Finally the array is seperately sorted three times using
-	Insertion Sort, Quick Sort and Merge Sort, all recursive
-	Every step in each sort is displayed to the user
+Authors: Evren Keskin, Jason Hagene
+Date: 11/09/2018
+Description: This program will allow the user to create an array of data and display its sorting
+The user is prompted to choose between int,double,char, and string arrays to create
+Then they enter data into the array manually
+Finally the array is seperately sorted three times using
+Insertion Sort, Quick Sort and Merge Sort, all recursive
+Every step in each sort is displayed to the user
 */
 
 
 #include "Array.h"
 #include <string>
 #include <iostream>
-
-template <class ObjectType>
-void insertionSort(Array<ObjectType> *array);
-
-template <class ObjectType>
-void quickSort(Array<ObjectType> *array);
-
-template <class ObjectType>
-void mergeSort(Array<ObjectType> *array);
-
-void printStep(std::string s);
 
 template <class ObjectType>
 void sortingArray(Array<ObjectType> *array);
@@ -48,7 +35,7 @@ int main()
 		std::cout << "3) Character array" << std::endl;
 		std::cout << "4) String array" << std::endl;
 		std::cout << "5) Exit" << std::endl;
-		inputNumber = takeIntegerInput(0,5);
+		inputNumber = takeIntegerInput(0, 5);
 		switch (inputNumber)
 		{
 		case 1://Integer array made
@@ -56,7 +43,7 @@ int main()
 			std::cout << "How long you want your integer array to be? (Maximum of 32)" << std::endl;
 			std::cout << "(Enter zero to return)" << std::endl;
 			std::cout << "-------------------------------------------" << std::endl;
-			inputNumber = takeIntegerInput(0,32);
+			inputNumber = takeIntegerInput(0, 32);
 			Array<int> intArray = Array<int>(inputNumber);
 			for (int ind = 0; ind < inputNumber; ind++)
 			{
@@ -118,7 +105,7 @@ int main()
 			std::cout << "How long you want your character array to be? (Maximum of 32)" << std::endl;
 			std::cout << "(Enter zero to return)" << std::endl;
 			std::cout << "-------------------------------------------" << std::endl;
-			inputNumber = takeIntegerInput(0, 32); 
+			inputNumber = takeIntegerInput(0, 32);
 			Array<char> charArray(inputNumber);
 			for (int ind = 0; ind < inputNumber; ind++)
 			{
@@ -152,7 +139,7 @@ int main()
 			std::cout << "How long you want your string array to be? (Maximum of 32)" << std::endl;
 			std::cout << "(Enter zero to return)" << std::endl;
 			std::cout << "-------------------------------------------" << std::endl;
-			inputNumber = takeIntegerInput(0,32); 
+			inputNumber = takeIntegerInput(0, 32);
 			Array<std::string> stringArray(inputNumber);
 			for (int ind = 0; ind < inputNumber; ind++)
 			{
@@ -184,6 +171,7 @@ int main()
 			isUsingProgram = false;
 			break;
 		}
+		catch (...);
 	} while (isUsingProgram);
 	return 0;
 }
@@ -206,7 +194,7 @@ int takeIntegerInput(int min, int max)
 		{
 			properNumber = false;
 		}
-	} while (!properNumber && (chosen <= min || chosen > max) );
+	} while (!properNumber && (chosen <= min || chosen > max));
 	system("CLS");
 	return chosen;
 }
@@ -245,6 +233,9 @@ void sortingArray(Array<ObjectType> *array)
 	std::cout << "Now your array will be sorted with " << std::endl;
 	std::cout << "Insertion sort, quick sort, and merge sort" << std::endl;
 
-	///code here
-
+	array->insertionSort();
+	array->shuffle();
+	array->quicksort();
+	array->shuffle();
+	array->mergeSort();
 }
