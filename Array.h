@@ -18,7 +18,9 @@ private:
 	}
 
 	void mergeSort(ObjectType* workarr, int start, int end, ObjectType* ot) {
-		if (end - start == 1) return;
+		if (end - start == 1) {
+			return;
+		}
 		int midpoint = (start + end) / 2;
 		mergeSort(ot, start, midpoint, workarr);
 		mergeSort(ot, midpoint, end, workarr);
@@ -26,17 +28,30 @@ private:
 	}
 
 	void merge(ObjectType* arr1, int start, int mid, int end, ObjectType* arr2) {
-		int i = start, j = mid;
-		for (int k = start; k < end; k++) {
-			if (i < mid && (j >= end || arr1[i] < arr2[j])) {
+		int i = start, j = mid, k = start;
+		while (i < mid && j < end) {
+			if (arr1[i] > arr1[j]) {
 				arr2[k] = arr1[i];
 				i++;
+				k++;
 			}
 			else {
 				arr2[k] = arr1[j];
 				j++;
+				k++;
 			}
 		}
+		while (i < mid) {
+			arr2[k] = arr1[i];
+			i++;
+			k++;
+		}
+		while (j < end) {
+			arr2[k] = arr1[j];
+			j++;
+			k++;
+		}
+
 		mergeSortPrint(arr2, end);
 	}
 
@@ -52,7 +67,7 @@ private:
 		ObjectType pivot = objectArray[end];
 		int i = start - 1;
 		for (int j = start; j < end; j++){
-			if (objectArray[j] < pivot) {
+			if (objectArray[j] > pivot) {
 				i++;
 				ObjectType temp = objectArray[i];
 				objectArray[i] = objectArray[j];
@@ -95,7 +110,7 @@ private:
 		insertionSort(lastElem - 1);
 		ObjectType tempOT = objectArray[lastElem];
 		int position = lastElem - 1;
-		while (position >= 0 && objectArray[position] > tempOT) {
+		while (position >= 0 && objectArray[position] < tempOT) {
 			objectArray[position + 1] = objectArray[position];
 			position--;
 		}

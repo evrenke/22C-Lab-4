@@ -66,7 +66,6 @@ int main()
 				intArray[ind] = number;
 			}
 			sortingArray(&intArray);
-			intArray.~Array();
 		}
 		break;
 		case 2://Double array made
@@ -97,7 +96,6 @@ int main()
 				doubleArray[ind] = number;
 			}
 			sortingArray(&doubleArray);
-			doubleArray.~Array();
 		}
 		break;
 		case 3://character array made
@@ -131,7 +129,6 @@ int main()
 				system("CLS");
 			}
 			sortingArray(&charArray);
-			charArray.~Array();
 		}
 		break;
 		case 4://string array made
@@ -164,14 +161,18 @@ int main()
 				system("CLS");
 			}
 			sortingArray(&stringArray);
-			stringArray.~Array();
 		}
 		break;
 		case 5://exiting program
+		{
 			isUsingProgram = false;
 			break;
 		}
-		catch (...);
+		default: {
+			std::cout << "Error: Please input a valid number." << std::endl;
+			break;
+		}
+		}
 	} while (isUsingProgram);
 	return 0;
 }
@@ -234,8 +235,11 @@ void sortingArray(Array<ObjectType> *array)
 	std::cout << "Insertion sort, quick sort, and merge sort" << std::endl;
 
 	array->insertionSort();
+	std::cout << "Insertion Sort Completed.\n";
 	array->shuffle();
 	array->quicksort();
+	std::cout << "Quicksort completed\n";
 	array->shuffle();
 	array->mergeSort();
+	std::cout << "Merge Sort Completed\n";
 }
