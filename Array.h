@@ -151,7 +151,7 @@ public:
 	}
 
 	void mergeSort() {
-		copyArr(objectArray, 0, length, workArray);
+		copyArr(objectArray, 0, length - 1, workArray);
 		mergeSort(workArray, 0, length, objectArray);
 	}
 
