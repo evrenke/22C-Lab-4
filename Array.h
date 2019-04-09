@@ -1,5 +1,4 @@
 #pragma once
-
 template <class ObjectType>
 class Array
 {
@@ -7,7 +6,6 @@ private:
 	int length;
 	ObjectType *objectArray;
 public:
-
 	Array(int setLength)
 	{
 		length = setLength;
@@ -15,9 +13,9 @@ public:
 	}
 	~Array()
 	{
-
+		delete[] objectArray;
+		objectArray = nullptr;
 	}
-
 	ObjectType &get(int get)
 	{
 		return *(objectArray + get);
@@ -30,7 +28,6 @@ public:
 	{
 		return length;
 	}
-
 	ObjectType &operator[] (int x)
 	{
 		return get(x);
